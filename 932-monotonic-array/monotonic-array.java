@@ -6,9 +6,6 @@ class Solution {
             if(nums[i]>nums[i+1])asc=false;
             if(nums[i]<nums[i+1])desc=false;
         }
-        if(!asc && !desc){
-            return false;
-        }
-        return asc?asc:desc;
+        return asc||desc;
     }
 }
