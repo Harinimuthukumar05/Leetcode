@@ -15,33 +15,17 @@
  */
 class Solution {
     public TreeNode reverseOddLevels(TreeNode root) {
-        if(root==null)return null;
-        Queue<TreeNode> q=new LinkedList<>();
-        int level=0;
-        q.add(root);
-        while(!q.isEmpty()){
-            int size=q.size();
-            List<TreeNode> n=new ArrayList<>();
-            for(int i=0;i<size;i++){
-                TreeNode popped=q.poll();
-                n.add(popped);
-                if(popped.left!=null)q.add(popped.left);
-                if(popped.right!=null)q.add(popped.right);
-            }
-            if(level%2==1){
-                int l=0;
-                int r=n.size()-1;
-                while(l<=r){
-                    int temp=n.get(l).val;
-                    n.get(l).val=n.get(r).val;
-                    n.get(r).val=temp;
-                    l++;
-                    r--;
-                }
-
-            }
-            level++;
-        }
+        dfs(root.left,root.right,1);
         return root;
+    }
+    public void dfs(TreeNode leftNode,TreeNode rightNode,int level){
+        if(leftNode==null && rightNode==null)return;
+        if(level%2==1){
+            int temp=leftNode.val;
+            leftNode.val=rightNode.val;
+            rightNode.val=temp;
+        }
+        dfs(leftNode.left,rightNode.right,level+1);
+        dfs(leftNode.right,rightNode.left,level+1);
     }
 }
