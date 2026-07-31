@@ -16,16 +16,16 @@
 class Solution {
     public TreeNode addOneRow(TreeNode root, int val, int depth) {
         if(root==null)return null;
-        return addRow(root,val,depth,1);
-    }
-    public TreeNode addRow(TreeNode root,int val,int depth,int i){
-        if(root==null)return null;
         if(depth==1){
             TreeNode nn=new TreeNode(val);
             nn.left=root;
             return nn;
         }
-        else if(depth-1==i){
+        return addRow(root,val,depth,1);
+    }
+    public TreeNode addRow(TreeNode root,int val,int depth,int i){
+        if(root==null)return null;
+        if(depth-1==i){
             TreeNode a=new TreeNode(val);
             TreeNode b=new TreeNode(val);
             TreeNode oldLeft=root.left;
