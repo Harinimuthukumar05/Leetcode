@@ -1,10 +1,15 @@
 class Solution {
     public int arrangeCoins(int n) {
-        int i=1;
-        while(n-i>=0){
-            n=n-i;
-            i++;
+        long low=1;
+        long high=n;
+        long ans=Integer.MIN_VALUE;
+        while(low<=high){
+            long mid=low+(high-low)/2;
+            long sum=(long)(mid*(mid+1)/2);
+            if(sum==n)return (int)mid;
+            else if(sum<n) low=mid+1;
+            else high=mid-1;
         }
-        return i-1;
+        return (int)high;
     }
 }
